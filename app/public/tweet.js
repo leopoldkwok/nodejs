@@ -1,6 +1,6 @@
 $.ajax({
   type: "GET",
-  url:"/ajax",
+  url:"/ajax", //loads ajax from the same server
   success: function(data) {
     for (var i = 0; i < data.tweets.length; i++) {
       appendNewTweet(data.tweets[i]);
@@ -14,7 +14,7 @@ function appendNewTweet(tweet) {
     "<div class='tweet-body'>" + tweet.text + "</div>" +
     "</div>";
 
-  $('#tweets-target').prepend(newTweet);
+  $('#tweets-target').prepend(newTweet); // placing the latest tweets at the top
 }
 
 $('#tweet').click(function() {
@@ -22,7 +22,7 @@ $('#tweet').click(function() {
     type: "POST",
     url: "/ajax",
     contentType: 'application/json',
-    data: JSON.stringify({tweet: $('#new-tweet').val()}),
+    data: JSON.stringify({tweet: $('#new-tweet').val()}), // taking an object and making it a string
     success: function(data) {
       appendNewTweet(data);
       $('#new-tweet').val('');
